@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { ArrowDown } from "lucide-react";
 import ProgressStepper from "./ProgressStepper";
@@ -129,12 +130,13 @@ export default function CareerPlaybook() {
         ))}
         <div className="h-8" />
       </main>
-      {/* Sticky bottom mobile CTA */}
-      <StickyCtaBar>
+      {/* Sticky bottom mobile CTA (REMOVED) */}
+      {/* <StickyCtaBar>
         Remix this Playbook for your journey!
-      </StickyCtaBar>
+      </StickyCtaBar> */}
     </div>
   );
 }
 
 // This file is now quite long. Consider breaking out rendering logic for each card type further for future maintenance.
+
