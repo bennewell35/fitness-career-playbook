@@ -40,10 +40,10 @@ export const metaCardsData = [
     children: (
       <div className="space-y-2 text-base">
         <div>
-          <b>My Story:</b> I switched to fitness coaching after leaving finance. Built skills in strength, mindset, and connection along the way—failures taught me as much as any victory.
+          <b>My Story:</b> I started out in wellness and have built a long career in healthcare, tech, and fitness tech. Along the way, I've learned the value of resilience, innovation, and supporting others—every challenge has taught me something new.
         </div>
         <div>
-          <b>Why I Built This:</b> “I wanted to provide a friendlier roadmap for new coaches—I know firsthand how lost you can feel at the start. This playbook is what I wish I'd had: simple, welcoming, actionable.”
+          <b>Why I Built This:</b> “I wanted to provide a friendlier roadmap for new coaches—I know firsthand how overwhelming it can feel at the start. This playbook is what I wish I'd had: simple, welcoming, and actionable.”
         </div>
         <div>
           <b>Connect:</b>
