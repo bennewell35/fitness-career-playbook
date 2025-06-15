@@ -6,15 +6,11 @@ import RemixCta from "./RemixCta";
 import StickyCtaBar from "./StickyCtaBar";
 import PlaybookHeader from "./PlaybookHeader";
 
-// NEW STEP DATA - Ordered and worded as per user instructions, no downloads/external docs
+/**
+ * Cards for each section.
+ * NOTE: No duplicate Hero card—header above cards already covers this.
+ */
 const stepCards = [
-  {
-    type: "landing" as const,
-    icon: <Book className="text-blue-500" size={36} />,
-    heading: "Fitness Career Playbook",
-    subheading: "Start your journey to becoming a coach or trainer!",
-    cta: <RemixCta size="md">Start Your Journey</RemixCta>,
-  },
   {
     type: "why" as const,
     icon: <Medal className="text-yellow-400" size={32} />,
@@ -112,7 +108,7 @@ const stepCards = [
           <li>Share this Playbook with friends (remix or copy!)</li>
         </ul>
       </>
-    )
+    ),
   },
   {
     type: "faq" as const,
@@ -158,22 +154,22 @@ const stepCards = [
   }
 ];
 
-// Core steps for progress tracking - now 7 main steps (Landing + 5 steps + Boost)
+// Step tracker is now: Why, Basics, Cert, XP, Coach, Pro, Boost
 const progressSteps = [
-  { label: "Start" },
   { label: "Why" },
   { label: "Basics" },
   { label: "Cert" },
   { label: "XP" },
   { label: "Coach" },
   { label: "Pro" },
+  { label: "Boost" },
 ];
 
 export default function CareerPlaybook() {
   const [currentStep, setCurrentStep] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Custom scroll logic to assign steps (for 7 progress markers now)
+  // Custom scroll logic to assign steps for the 7 unique sections
   useEffect(() => {
     const onScroll = () => {
       const positions = cardRefs.current.map(
@@ -183,21 +179,12 @@ export default function CareerPlaybook() {
       for (let i = 0; i < positions.length; ++i) {
         if (positions[i] < 90) idx = i;
       }
-      // Adjust mapping: landing(0), why(1), step1(2), ..., step5(6)
-      setCurrentStep(
-        idx < 1 ? 0 :
-        idx < 2 ? 1 :
-        idx < 3 ? 2 :
-        idx < 4 ? 3 :
-        idx < 5 ? 4 :
-        idx < 6 ? 5 : 6
-      );
+      setCurrentStep(idx);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Add step x of total above cards (mobile)
   const progressText = `Step ${Math.min(currentStep + 1, progressSteps.length)} of ${progressSteps.length}`;
 
   return (
@@ -240,3 +227,7 @@ export default function CareerPlaybook() {
     </div>
   );
 }
+
+// This file is now >240 lines long.
+// Suggestion: Next refactor, break major step/detail card data out into a separate data file
+// and split subcomponents; keep just orchestration here.
