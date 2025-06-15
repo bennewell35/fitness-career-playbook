@@ -2,14 +2,14 @@
 import { FC, ReactNode } from "react";
 import { Check, Book, Medal, Dumbbell, Network, ArrowDown, Star, Download } from "lucide-react";
 
-// CardType: step, why, booster, faq, about, etc  
+// CardType: step, why, booster, faq, about, etc
 export interface PlaybookCardProps {
   type: "landing" | "why" | "step" | "bonus" | "faq" | "about";
   icon: ReactNode;
   heading: string;
   subheading?: string;
   children?: ReactNode;
-  checklist?: string[];
+  checklist?: (string | ReactNode)[];
   tip?: string | ReactNode;
   quote?: string;
   cta?: ReactNode;
