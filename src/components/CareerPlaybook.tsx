@@ -1,10 +1,10 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Book, Dumbbell, Medal, Network, Linkedin, ArrowDown, Star, Github } from "lucide-react";
 import ProgressStepper from "./ProgressStepper";
 import { PlaybookCard } from "./PlaybookCard";
 import RemixCta from "./RemixCta";
 import StickyCtaBar from "./StickyCtaBar";
+import PlaybookHeader from "./PlaybookHeader";
 
 // NEW STEP DATA - Ordered and worded as per user instructions, no downloads/external docs
 const stepCards = [
@@ -202,12 +202,14 @@ export default function CareerPlaybook() {
 
   return (
     <div className="bg-remix-gradient min-h-screen w-full flex flex-col items-center pb-24">
+      {/* HERO HEADER */}
+      <PlaybookHeader />
+
       {/* Sticky Progress Bar/Stepper */}
       <ProgressStepper
         steps={progressSteps}
         currentStep={currentStep}
         setStep={(stepIdx) => {
-          // Scroll to the relevant section (by ref index)
           cardRefs.current[stepIdx]?.scrollIntoView({ behavior: "smooth", block: "start" });
         }}
       />
@@ -215,10 +217,11 @@ export default function CareerPlaybook() {
       <div className="w-full text-center font-semibold text-sm text-blue-600 pt-2 pb-0 md:hidden">
         {progressText}
       </div>
+
       {/* Card Stack */}
-      <main className="w-full max-w-md flex flex-col pt-2 mx-auto">
+      <main className="w-full flex flex-col pt-2 mx-auto items-center">
         {stepCards.map((card, i) => (
-          <div ref={el => (cardRefs.current[i] = el)} key={card.heading + i}>
+          <div ref={el => (cardRefs.current[i] = el)} key={card.heading + i} className="w-full flex flex-col items-center">
             <PlaybookCard {...card} />
             {/* Progress arrow between steps/cards except last */}
             {i < stepCards.length - 1 && (
@@ -237,5 +240,3 @@ export default function CareerPlaybook() {
     </div>
   );
 }
-
-// ... consider refactoring this file (now even longer) for better maintainability

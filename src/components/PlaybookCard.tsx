@@ -1,6 +1,6 @@
 
 import { FC, ReactNode } from "react";
-import { Check, Book, Medal, Dumbbell, Network, ArrowDown, Star, Download } from "lucide-react";
+import { Check, Download } from "lucide-react";
 
 // CardType: step, why, booster, faq, about, etc
 export interface PlaybookCardProps {
@@ -39,31 +39,42 @@ export const PlaybookCard: FC<PlaybookCardProps> = ({
   downloadLink,
   downloadLabel
 }) => (
-  <section className={`relative flex flex-col items-center rounded-2xl shadow-card px-4 py-7 mb-3 ${gradients[type]} overflow-hidden`}>
-    <div className="text-4xl mb-2">{icon}</div>
-    <h2 className="text-2xl font-bold text-slate-900 text-center mb-1">{heading}</h2>
-    {subheading && <div className="mb-2 text-base text-slate-700 text-center">{subheading}</div>}
+  <section
+    className={`relative flex flex-col items-center rounded-3xl sm:rounded-[2rem] shadow-card 
+      px-6 py-8 sm:px-10 sm:py-12 mb-6
+      w-full max-w-lg sm:max-w-xl
+      ${gradients[type]} 
+      overflow-hidden
+      `}
+    style={{
+      minHeight: 220,
+      fontSize: "1.13rem", // About 18px
+    }}
+  >
+    <div className="text-4xl mb-3">{icon}</div>
+    <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-2">{heading}</h2>
+    {subheading && <div className="mb-3 text-lg text-slate-700 text-center">{subheading}</div>}
 
     {downloadLink && (
       <a
         href={downloadLink}
         download
-        className="flex items-center gap-2 bg-white rounded-full px-4 py-2 mt-2 mb-3 text-blue-700 text-sm font-medium shadow hover:bg-blue-50 transition"
+        className="flex items-center gap-2 bg-white rounded-full px-6 py-2 mt-2 mb-3 text-blue-700 text-base font-semibold shadow hover:bg-blue-50 transition"
       >
-        <Download size={18} /> {downloadLabel || "Download"}
+        <Download size={20} /> {downloadLabel || "Download"}
       </a>
     )}
 
-    <div className="space-y-2 w-full text-center text-[16px] text-slate-700 mb-3">
+    <div className="space-y-3 w-full text-center text-lg text-slate-700 mb-4">
       {children}
     </div>
 
     {/* Checklist */}
     {checklist && (
-      <ul className="w-full flex flex-col items-start gap-2 mb-2 px-4 sm:px-8 mx-auto">
+      <ul className="w-full flex flex-col items-start gap-3 mb-3 px-4 sm:px-8 mx-auto">
         {checklist.map((item, idx) => (
-          <li key={idx} className="flex items-center gap-2 text-left text-slate-800">
-            <Check className="text-green-500" size={18} /> <span>{item}</span>
+          <li key={idx} className="flex items-center gap-3 text-left text-slate-800 text-base sm:text-lg">
+            <Check className="text-green-500 shrink-0" size={20} /> <span>{item}</span>
           </li>
         ))}
       </ul>
@@ -71,15 +82,15 @@ export const PlaybookCard: FC<PlaybookCardProps> = ({
 
     {/* Coach's Tip */}
     {tip && (
-      <div className="bg-green-100 text-green-800 rounded-lg px-4 py-2 text-sm w-full my-2 font-medium">{tip}</div>
+      <div className="bg-green-100 text-green-800 rounded-xl px-5 py-2 text-base w-full my-2 font-medium">{tip}</div>
     )}
 
     {/* Motivational Quote */}
     {quote && (
-      <blockquote className="italic text-blue-700 text-center px-1 py-2 w-full">{quote}</blockquote>
+      <blockquote className="italic text-blue-700 text-center px-2 py-3 w-full text-lg">{quote}</blockquote>
     )}
 
     {/* CTA Button */}
-    {cta && <div className="mt-4">{cta}</div>}
+    {cta && <div className="mt-5">{cta}</div>}
   </section>
 );
