@@ -85,7 +85,6 @@ export default function CareerPlaybook() {
             ) : (
               <>
                 <StepCard {...card} />
-                <ShareCta />
                 {card.levelUp && <LevelUpCard>{card.levelUp}</LevelUpCard>}
               </>
             )}
@@ -106,7 +105,6 @@ export default function CareerPlaybook() {
                   {meta.heading && <span className="font-bold">{meta.heading}: </span>}
                   {meta.children}
                 </MotivationCard>
-                <ShareCta />
               </>
             )}
             {meta.type === "faq" && (
